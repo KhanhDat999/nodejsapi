@@ -10,7 +10,7 @@ app.set('view engine', 'ejs');
 app.get('/', (req, res) => {
   database.query( `SELECT * FROM test` ,(err , data) => {
     if (err) throw err;
-    res.json("home");
+    res.json(data);
   });
 }),
 
