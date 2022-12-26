@@ -19,50 +19,51 @@ app.use(bodyParser.json())
 app.set('view engine', 'ejs');
 app.set("views","./views");
 
-app.get('/home' , (req , res) =>{
-  ZingMp3.getHome(1)
-.then(ress => res.json(ress)) 
+// app.get('/home' , (req , res) =>{
+//   ZingMp3.getHome(1)
+// .then(ress => res.json(ress)) 
 
 
-})
+// })
 
-app.get('/top100' , (req , res) =>{
-  ZingMp3.getChartHome()
-.then(ress => res.json(ress)) 
-
-
-})
-
-app.get('/info/q=:id' , (req , res) =>{
-  ZingMp3.getFullInfo(req.params.id)
-  .then(ress => res.json(ress)) 
-
-})
+// app.get('/top100' , (req , res) =>{
+//   ZingMp3.getChartHome()
+// .then(ress => res.json(ress)) 
 
 
+// })
+
+// app.get('/info/q=:id' , (req , res) =>{
+//   ZingMp3.getFullInfo(req.params.id)
+//   .then(ress => res.json(ress)) 
+
+// })
 
 
-// app.get('/home', (req, res) => {
-//   database.query(`SELECT * FROM Banner`, (err, data) => {
-//     if (err) throw err;
-//     // res.json(data)
-//     res.render('index.ejs' , {data : data});
-//   });
-// }),
+
+
+app.get('/home', (req, res) => {
+  database.query(`SELECT * FROM hocsinh`, (err, data) => {
+    if (err) throw err;
+    res.json(data)
+    console.log(data)
+    // res.render('index.ejs' , {data : data});
+  });
+}),
 
 
 // app.get('/post' , (req , res) =>{
 //   res.render("index.ejs" ,)
     
 // })
-// app.post('/post' , (req , res) =>{
+app.post('/post' , (req , res) =>{
 
-//  database.query(`INSERT INTO Banner ( Imgbanner) VALUES ('${req.body.Imgbanner}')` , (err) =>{
-//   if(err) res.json(err)
-//   res.render("index.ejs")
-//  })
+ database.query(`INSERT INTO Banner ( Imgbanner) VALUES ('${req.body.Imgbanner}')` , (err) =>{
+  if(err) res.json(err)
+  res.render("index.ejs")
+ })
 
-// })
+})
 
 // app.get('/delete/:id' , (req , res) =>{
 // console.log(req.params.id)
